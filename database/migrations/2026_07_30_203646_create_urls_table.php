@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("original_url", 2048);
             $table->string("short_code")->unique();
-            $table->integer("clicks")->default(0);
+            $table->integer("clicks")->default;
             $table->timestamps();
         });
     }
