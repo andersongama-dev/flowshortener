@@ -15,8 +15,7 @@ class UrlController extends Controller
             ["url.max"=>"A URL deve ter no máximo 2048 caracteres"]
         );
 
-        $urlService = new UrlService();
-        $url = $urlService->shorten($request->url);
+        $url = UrlService::shorten($request->url);
         
         return response()->json([
             'id' => $url->id,
