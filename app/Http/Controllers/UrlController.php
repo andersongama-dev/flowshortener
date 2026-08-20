@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Url;
 use App\Services\UrlService;
 use Illuminate\Http\Request;
 
@@ -23,5 +24,12 @@ class UrlController extends Controller
             'shortened' => url('/' . $url->short_code)
         ]);
 
+    }
+
+    public function redirect($code) {
+        $url = Url::where('short_code', $code)->firstOrFail();
+        $url->increment('clicks');
+
+        return redirect($url->original_url);
     }
 }
